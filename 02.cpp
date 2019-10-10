@@ -1,5 +1,5 @@
+#include <cstdio>
 #include <omp.h>
-#include <stdio.h>
 
 int main() {
     omp_set_num_threads(3);

@@ -1,5 +1,5 @@
+#include <cstdio>
 #include <omp.h>
-#include <stdio.h>
 #include <string>
 
 using std::string;
@@ -24,10 +24,10 @@ int main() {
          * из области.
          */
         int id = omp_get_thread_num();
-        log("before inc a, b", a, b, id);
+        log("before inc", a, b, id);
         a += id;
         b += id;
-        log(" after inc a, b", a, b, id);
+        log(" after inc", a, b, id);
     }
 
     log("after first region", a, b, 0);
@@ -42,9 +42,9 @@ int main() {
          * неизвестно.
          */
         int id = omp_get_thread_num();
-        log("before dec a, b", a, b, id);
+        log("before dec", a, b, id);
         a -= id;
         b -= id;
-        log(" after dec a, b", a, b, id);
+        log(" after dec", a, b, id);
     }
 }

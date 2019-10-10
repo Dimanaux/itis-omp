@@ -1,5 +1,7 @@
+#include <cstdio>
 #include <omp.h>
-#include <stdio.h>
+
+#include "lib.h"
 
 int minimum(int array[], int size) {
     int min = array[0];
@@ -22,20 +24,20 @@ int maximum(int array[], int size) {
 }
 
 int main() {
-    int a[] = {0, 2, 4, 6, 8, 10, 12, 3, -1, -5};
-    int b[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+    int* a = randomArray(10);
+    int* b = randomArray(10);
 
     omp_set_num_threads(2);
     int min;
     int max;
-    #pragma omp parallel sections
+    #pragma omp parallel
     {
-        #pragma omp section
+        #pragma omp if (omp_get_thread_num() == 0)
         {
             min = minimum(a, 10);
         }
 
-        #pragma omp section
+        #pragma omp if (omp_get_thread_num() == 1)
         {
             max = maximum(b, 10);
         }
