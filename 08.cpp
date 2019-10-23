@@ -12,10 +12,9 @@
 int* multiply(int** matrix, int n, int m, int* vector) {
     int* result = new int[n];
     double t1 = omp_get_wtime();
-    #pragma omp parallel for firstprivate(n, m, matrix, vector) schedule(static, 5000)
+    #pragma omp parallel for
     for (int i = 0; i < n; i++) {
         int s = 0;
-        // #pragma omp parallel for reduction(+: s)
         for (int j = 0; j < m; j++) {
             s += matrix[i][j] * vector[j];
         }
